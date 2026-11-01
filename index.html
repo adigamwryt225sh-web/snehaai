@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Predictor | Chandigarh University</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Fixed Top Navigation -->
+    <header class="top-nav">
+        <div class="logo-container">
+            <span id="menuToggle" class="menu-toggle">&#9776;</span>
+            <img src="cu.jpg" alt="Chandigarh University Logo" class="cu-logo">
+            <h1 class="top-title">Placement Predictor</h1>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Left Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-box active-tab" data-target="predict-section">
+                Placement Prediction
+            </div>
+            <div class="sidebar-box" data-target="about-section">
+                About Us
+            </div>
+            <div class="sidebar-box" data-target="support-section">
+                Help & Guidelines
+            </div>
+            <div class="sidebar-box" data-target="creators-section">
+                Created By
+            </div>
+        </aside>
+
+        <!-- Main Sliding Content Area -->
+        <main class="main-content">
+            
+            <!-- Slide 1: Prediction Form -->
+            <section id="predict-section" class="content-slide active-slide">
+                <div class="card">
+                    <h2 class="red-heading-box">Check Placement Probability</h2>
+                    <form id="predictionForm">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="cgpa">Current CGPA</label>
+                                <input type="number" id="cgpa" step="0.01" min="0" max="10" placeholder="e.g., 8.5" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="marks">12th Marks (%)</label>
+                                <input type="number" id="marks" step="0.1" min="0" max="100" placeholder="e.g., 85.5" required>
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="branch">Branch & Specialization</label>
+                                <select id="branch" required>
+                                    <option value="" disabled selected>Select Branch</option>
+                                    <option value="cse_core">CSE (Core)</option>
+                                    <option value="cse_spec">CSE (AIML / Cloud / Data Science)</option>
+                                    <option value="ece_ee">ECE / Electrical</option>
+                                    <option value="other">Mechanical / Civil / Other</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="backlogs">Active Backlogs</label>
+                                <select id="backlogs" required>
+                                    <option value="0" selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3+">3 or more</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="internships">Internships Completed</label>
+                                <input type="number" id="internships" min="0" max="10" placeholder="e.g., 2" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="coding">Coding/Problem Solving</label>
+                                <select id="coding" required>
+                                    <option value="" disabled selected>Select Level</option>
+                                    <option value="beginner">Beginner (Classroom Knowledge)</option>
+                                    <option value="intermediate">Intermediate (HackerRank/Basic LeetCode)</option>
+                                    <option value="advanced">Advanced (Competitive Programmer)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-predict">Calculate Probability</button>
+                    </form>
+                    
+                    <div id="resultBox" class="result-box hidden">
+                        <h3 id="predictionResult"></h3>
+                        <div class="progress-bar-container">
+                            <div id="progressBar" class="progress-bar"></div>
+                        </div>
+                        
+                        <div id="companyBox" class="company-section hidden">
+                            <h4>Eligible Target Companies:</h4>
+                            <!-- This will now hold clickable company cards -->
+                            <div id="companyTags" class="tags-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: About Us -->
+            <section id="about-section" class="content-slide">
+                <div class="card">
+                    <h2 class="red-heading-box">About This Project</h2>
+                    <p><strong>Objective:</strong> To provide an accurate, algorithm-driven estimation of placement success based on historical academic data, technical skill levels, and internship experience.</p>
+                    <br>
+                    <p><strong>Institution:</strong> Built specifically for the students of Chandigarh University to aid in placement preparation, goal setting, and targeting specific company tiers.</p>
+                </div>
+            </section>
+
+            <!-- Slide 3: Guidelines -->
+            <section id="support-section" class="content-slide">
+                <div class="card">
+                    <h2 class="red-heading-box">How to Use</h2>
+                    <ul class="guidelines-list">
+                        <li>Ensure all academic marks and backlog counts are entered correctly.</li>
+                        <li>Your coding skill level heavily influences top-tier company recommendations.</li>
+                        <li>This tool provides predictive analytics based on general placement trends and is for estimation purposes only.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 4: Created By -->
+            <section id="creators-section" class="content-slide">
+                <div class="card">
+                    <h2 class="red-heading-box">Project Creators</h2>
+                    <p class="section-desc">This placement prediction model was designed and developed by:</p>
+                    
+                    <div class="creator-profile">
+                        <h3>Sneha</h3>
+                        <p><strong>UID:</strong> 26BDA10152</p>
+                        <p><strong>Role:</strong> Lead Developer & UI Design</p>
+                    </div>
+                    
+                    <div class="creator-profile">
+                        <h3>Yashika Bishnoi</h3>
+                        <p><strong>UID:</strong> 26BDA10169</p>
+                        <p><strong>Role:</strong> Backend Logic & Data Structuring</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
