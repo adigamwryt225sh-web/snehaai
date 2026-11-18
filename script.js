@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const internships = parseInt(document.getElementById("internships").value) || 0;
             const coding = document.getElementById("coding").value;
 
-            // Base Algorithm mapping
             let probability = (cgpa * 5.5) + (marks * 0.15) + (internships * 4);
             
             if (branch === "cse_core") probability += 10;
@@ -64,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (probability < 5) probability = 5; 
             if (probability > 98.5) probability = 98.5; 
 
-            // Target Companies Array with Descriptions and Career Links
             let companies = [];
             if (probability >= 85) {
                 companies = [
@@ -94,34 +92,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 ];
             }
 
-            // UI Reset
             resultBox.classList.remove("hidden");
             companyBox.classList.add("hidden");
             progressBar.style.width = "0%"; 
             
-            // Render UI Animations
             setTimeout(() => {
                 predictionResult.innerText = `Placement Probability: ${probability.toFixed(1)}%`;
                 progressBar.style.width = `${probability}%`;
 
-                // Render Company Link Cards
                 companyTags.innerHTML = "";
                 companies.forEach(company => {
-                    // Create an <a> tag instead of a span
                     const card = document.createElement("a");
                     card.href = company.url;
-                    card.target = "_blank"; // Opens link in a new tab
+                    card.target = "_blank";
                     card.className = "company-card";
                     
-                    // Create Name
                     const title = document.createElement("strong");
                     title.innerText = company.name;
                     
-                    // Create Description
                     const desc = document.createElement("span");
                     desc.innerText = company.desc;
                     
-                    // Add to card, then add card to container
                     card.appendChild(title);
                     card.appendChild(desc);
                     companyTags.appendChild(card);
@@ -134,4 +125,87 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 100);
         });
     }
+
+    // ================= AI NEVI ASSISTANT LOGIC =================
+    const neviBtn = document.getElementById("neviBtn");
+    const neviModal = document.getElementById("neviModal");
+    const closeNevi = document.getElementById("closeNevi");
+    const neviSearchInput = document.getElementById("neviSearchInput");
+    const cmdWrappers = document.querySelectorAll(".cmd-wrapper");
+
+    neviBtn.addEventListener("click", () => {
+        neviModal.classList.toggle("hidden-modal");
+    });
+
+    closeNevi.addEventListener("click", () => {
+        neviModal.classList.add("hidden-modal");
+    });
+
+    function typeWriterEffect(element, text, speed = 15) {
+        element.innerHTML = "";
+        let i = 0;
+        function typing() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typing, speed);
+            }
+        }
+        typing();
+    }
+
+    function getActionResponse(action) {
+        switch(action) {
+            case "search":
+                return "Portal Search:\nUse the main dashboard form to calculate your placement probability or navigate using the left sidebar menu (Hamburger icon top-left).";
+            case "developers":
+                return "Website Developers:\n• Sneha (UID: 26BDA10152) - Lead Developer & UI Design\n• Yashika Bishnoi (UID: 26BDA10169) - Backend Logic & Analytics";
+            case "companies":
+                return "Expanded Placement Tiers:\n• Tier 1 (Dream): Microsoft, Google, Amazon, Atlassian (CTC: 20 LPA+)\n• Tier 2 (Super Dream): TCS Digital, Cognizant, Accenture (CTC: 7-12 LPA)\n• Tier 3 (Mass Recruiters): TCS Ninja, Infosys, Wipro (CTC: 3.5-5 LPA)";
+            case "ats":
+                return "📄 ATS Score Checker (Project Feature):\nUpload your resume to check keyword matching against Job Descriptions (JDs) for Chandigarh University placement drives. Ensures 90%+ pass rate through automated recruiter filters!";
+            case "interview":
+                return "💡 Mock Interview Q&A (Project Feature):\nGenerates dynamic technical questions on Data Structures, OOPs, DBMS, and system design tailored specifically to your chosen target company tier.";
+            case "cgpa":
+                return "📊 Target CGPA Planner (Project Feature):\nCalculates the exact SGPA you need in upcoming semesters to achieve your target graduation CGPA for elite company cutoff criteria (e.g., 8.0+ CGPA requirement).";
+            default:
+                return "No matching information found.";
+        }
+    }
+
+    cmdWrappers.forEach(wrapper => {
+        const btn = wrapper.querySelector(".nevi-cmd-btn");
+        const outputBox = wrapper.querySelector(".inline-output");
+        const action = btn.getAttribute("data-action");
+
+        btn.addEventListener("click", () => {
+            cmdWrappers.forEach(w => {
+                if(w !== wrapper) {
+                    w.querySelector(".inline-output").classList.add("hidden");
+                }
+            });
+
+            if(outputBox.classList.contains("hidden")) {
+                outputBox.classList.remove("hidden");
+                const textResponse = getActionResponse(action);
+                typeWriterEffect(outputBox, textResponse, 15);
+            } else {
+                outputBox.classList.add("hidden");
+            }
+        });
+    });
+
+    neviSearchInput.addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        cmdWrappers.forEach(wrapper => {
+            const btn = wrapper.querySelector(".nevi-cmd-btn");
+            const text = btn.innerText.toLowerCase();
+            if(text.includes(query) || !query) {
+                wrapper.style.display = "flex";
+            } else {
+                wrapper.style.display = "none";
+                wrapper.querySelector(".inline-output").classList.add("hidden");
+            }
+        });
+    });
 });

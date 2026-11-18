@@ -6,6 +6,7 @@
     --text-black: #000000;     
     --box-red: #D32F2F;        
     --top-nav-bg: #3E2723;     
+    --ai-purple: #4A148C;      
 }
 
 * {
@@ -152,7 +153,6 @@ body {
     border: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Red Heading Box */
 .red-heading-box {
     background-color: var(--box-red);
     color: white;
@@ -165,7 +165,6 @@ body {
     text-align: center;
 }
 
-/* Form Styles */
 .input-row {
     display: flex;
     gap: 20px;
@@ -230,7 +229,6 @@ body {
     font-size: 1.1rem;
 }
 
-/* Results Section */
 .result-box {
     margin-top: 30px;
     padding: 25px;
@@ -266,7 +264,6 @@ body {
     padding-top: 20px;
 }
 
-/* New Clickable Company Cards Styles */
 .tags-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -279,7 +276,7 @@ body {
     color: white;
     padding: 15px;
     border-radius: 8px;
-    text-decoration: none; /* Removes hyperlink underline */
+    text-decoration: none; 
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -289,15 +286,178 @@ body {
 
 .company-card:hover {
     transform: translateY(-4px);
-    background-color: var(--box-red); /* Turns red on hover */
+    background-color: var(--box-red); 
 }
 
-.company-card strong {
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
+.company-card strong { font-size: 1.1rem; }
+.company-card span { font-size: 0.85rem; opacity: 0.85; }
+
+
+/* ================= AI NEVI STYLES ================= */
+.nevi-floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--ai-purple);
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.company-card span {
-    font-size: 0.85rem;
-    opacity: 0.85;
+.nevi-floating-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    background-color: #311B92;
 }
+
+.spiral-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spiral-icon {
+    width: 100%;
+    height: 100%;
+    animation: spinSpiral 10s linear infinite;
+}
+
+@keyframes spinSpiral {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.nevi-badge {
+    position: absolute;
+    bottom: -22px;
+    background: #333;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.nevi-modal {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 390px;
+    max-height: 550px;
+    background: #3E2723; 
+    border: 3px solid var(--ai-purple);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    transform-origin: bottom right;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.nevi-modal.hidden-modal {
+    transform: scale(0) translateY(50px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nevi-header {
+    background-color: var(--ai-purple);
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nevi-body {
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 460px;
+}
+
+.nevi-search-box input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--ai-purple);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    background: #FFF3E0;
+    color: #000;
+}
+
+.nevi-instruction {
+    font-size: 0.9rem;
+    color: #E0E0E0;
+    font-weight: 600;
+}
+
+.nevi-commands-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cmd-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nevi-cmd-btn {
+    width: 100%;
+    background-color: #5D4037;
+    color: white;
+    border: 2px solid #795548;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: left;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nevi-cmd-btn:hover {
+    background-color: var(--ai-purple);
+    border-color: var(--ai-purple);
+    transform: translateX(4px);
+}
+
+.inline-output {
+    background: #FFF3E0;
+    color: #000;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    border-left: 4px solid var(--ai-purple);
+    animation: fadeInOutput 0.3s ease;
+    white-space: pre-line; /* Properly renders \n as line breaks */
+}
+
+@keyframes fadeInOutput {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden { display: none; }

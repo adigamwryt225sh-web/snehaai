@@ -101,7 +101,6 @@
                         
                         <div id="companyBox" class="company-section hidden">
                             <h4>Eligible Target Companies:</h4>
-                            <!-- This will now hold clickable company cards -->
                             <div id="companyTags" class="tags-container"></div>
                         </div>
                     </div>
@@ -152,6 +151,60 @@
 
         </main>
     </div>
+
+    <!-- AI NEVI FLOATING BOT BUTTON -->
+    <div id="neviBtn" class="nevi-floating-btn" title="Ask AI Nevi">
+        <div class="spiral-container">
+            <svg class="spiral-icon" viewBox="0 0 100 100">
+                <path d="M50,50 m0,-5 a5,5 0 0,1 5,5 a10,10 0 0,1 -10,10 a15,15 0 0,1 15,-15 a20,20 0 0,1 -20,20 a25,25 0 0,1 25,-25 a30,30 0 0,1 -30,30 a35,35 0 0,1 35,-35" fill="none" stroke="white" stroke-width="4"/>
+            </svg>
+        </div>
+        <span class="nevi-badge">Nevi AI</span>
+    </div>
+
+    <!-- AI NEVI COMMAND CENTER MODAL -->
+    <div id="neviModal" class="nevi-modal hidden-modal">
+        <div class="nevi-header">
+            <h3>🤖 Nevi - AI Assistant</h3>
+            <span id="closeNevi" class="close-btn">&times;</span>
+        </div>
+        <div class="nevi-body">
+            <div class="nevi-search-box">
+                <input type="text" id="neviSearchInput" placeholder="Search features, companies, creators...">
+            </div>
+            
+            <p class="nevi-instruction">Select a command below:</p>
+            
+            <!-- Commands with individual drop-down output slots -->
+            <div class="nevi-commands-list" id="neviCommandList">
+                <div class="cmd-wrapper">
+                    <button class="nevi-cmd-btn" data-action="search">🔍 Search Portal</button>
+                    <div class="inline-output hidden"></div>
+                </div>
+                <div class="cmd-wrapper">
+                    <button class="nevi-cmd-btn" data-action="developers">👥 Website Developers Info</button>
+                    <div class="inline-output hidden"></div>
+                </div>
+                <div class="cmd-wrapper">
+                    <button class="nevi-cmd-btn" data-action="companies">🏢 Expanded Company Tiers & Packages</button>
+                    <div class="inline-output hidden"></div>
+                </div>
+                <div class="cmd-wrapper">
+                    <button class="nevi-cmd-btn" data-action="ats">📄 Feature: Resume ATS Score Checker</button>
+                    <div class="inline-output hidden"></div>
+                </div>
+                <div class="cmd-wrapper">
+                    <button class="nevi-cmd-btn" data-action="interview">💡 Feature: Mock Interview Q&A Generator</button>
+                    <div class="inline-output hidden"></div>
+                </div>
+                <div class="cmd-wrapper">
+                    <button class="nevi-cmd-btn" data-action="cgpa">📊 Feature: Target CGPA Planner</button>
+                    <div class="inline-output hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
