@@ -22,6 +22,15 @@
             <div class="sidebar-box active-tab" data-target="predict-section">
                 Placement Prediction
             </div>
+            <div class="sidebar-box" data-target="ats-section">
+                Resume ATS Checker
+            </div>
+            <div class="sidebar-box" data-target="interview-section">
+                Mock Interview Q&A
+            </div>
+            <div class="sidebar-box" data-target="cgpa-section">
+                Target CGPA Planner
+            </div>
             <div class="sidebar-box" data-target="about-section">
                 About Us
             </div>
@@ -107,7 +116,97 @@
                 </div>
             </section>
 
-            <!-- Slide 2: About Us -->
+            <!-- Slide 2: Resume ATS Score Checker -->
+            <section id="ats-section" class="content-slide">
+                <div class="card">
+                    <h2 class="red-heading-box">Resume ATS Score Checker</h2>
+                    <form id="atsForm">
+                        <div class="input-group">
+                            <label for="targetRole">Target Job Role</label>
+                            <select id="targetRole" required>
+                                <option value="sde">Software Development Engineer (SDE)</option>
+                                <option value="data">Data Analyst / AI / ML Engineer</option>
+                                <option value="web">Full Stack Web Developer</option>
+                                <option value="core">Core Systems / IT Services</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="resumeText">Paste Your Resume Skills, Projects & Summary</label>
+                            <textarea id="resumeText" rows="5" placeholder="Paste key sections of your resume here (e.g., Python, DSA, SQL, React, Git, Internship experience)..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-predict">Scan Resume ATS Score</button>
+                    </form>
+
+                    <div id="atsResultBox" class="result-box hidden">
+                        <h3 id="atsScoreText"></h3>
+                        <div class="progress-bar-container">
+                            <div id="atsProgressBar" class="progress-bar"></div>
+                        </div>
+                        <p id="atsFeedback" class="feature-feedback"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: Mock Interview Q&A Generator -->
+            <section id="interview-section" class="content-slide">
+                <div class="card">
+                    <h2 class="red-heading-box">Mock Interview Q&A Generator</h2>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="interviewTopic">Select Core Subject</label>
+                            <select id="interviewTopic">
+                                <option value="dsa">Data Structures & Algorithms (DSA)</option>
+                                <option value="oops">Object-Oriented Programming (OOPs)</option>
+                                <option value="dbms">Database Management (DBMS & SQL)</option>
+                                <option value="hr">HR & Behavioral Round</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" id="generateQaBtn" class="btn-predict">Generate Interview Questions</button>
+
+                    <div id="qaContainer" class="qa-list hidden"></div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Target CGPA Planner -->
+            <section id="cgpa-section" class="content-slide">
+                <div class="card">
+                    <h2 class="red-heading-box">Target CGPA Planner</h2>
+                    <form id="cgpaForm">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="currentCgpaInput">Current CGPA</label>
+                                <input type="number" id="currentCgpaInput" step="0.01" min="0" max="10" placeholder="e.g., 7.4" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="completedSems">Semesters Completed</label>
+                                <input type="number" id="completedSems" min="1" max="7" placeholder="e.g., 4" required>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="targetCgpaInput">Target Graduation CGPA</label>
+                                <input type="number" id="targetCgpaInput" step="0.01" min="0" max="10" placeholder="e.g., 8.0" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="totalSems">Total Course Semesters</label>
+                                <select id="totalSems">
+                                    <option value="8" selected>8 Semesters (B.E. / B.Tech)</option>
+                                    <option value="6">6 Semesters (BCA / B.Sc)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-predict">Calculate Required SGPA</button>
+                    </form>
+
+                    <div id="cgpaResultBox" class="result-box hidden">
+                        <h3 id="requiredSgpaText"></h3>
+                        <p id="cgpaAdviceText" class="feature-feedback"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: About Us -->
             <section id="about-section" class="content-slide">
                 <div class="card">
                     <h2 class="red-heading-box">About This Project</h2>
@@ -117,19 +216,20 @@
                 </div>
             </section>
 
-            <!-- Slide 3: Guidelines -->
+            <!-- Slide 6: Guidelines -->
             <section id="support-section" class="content-slide">
                 <div class="card">
                     <h2 class="red-heading-box">How to Use</h2>
                     <ul class="guidelines-list">
                         <li>Ensure all academic marks and backlog counts are entered correctly.</li>
                         <li>Your coding skill level heavily influences top-tier company recommendations.</li>
+                        <li>Use the sidebar tools to scan your resume keywords, practice technical Q&A, and plan your target CGPA.</li>
                         <li>This tool provides predictive analytics based on general placement trends and is for estimation purposes only.</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Slide 4: Created By -->
+            <!-- Slide 7: Created By -->
             <section id="creators-section" class="content-slide">
                 <div class="card">
                     <h2 class="red-heading-box">Project Creators</h2>
@@ -175,7 +275,6 @@
             
             <p class="nevi-instruction">Select a command below:</p>
             
-            <!-- Commands with individual drop-down output slots -->
             <div class="nevi-commands-list" id="neviCommandList">
                 <div class="cmd-wrapper">
                     <button class="nevi-cmd-btn" data-action="search">🔍 Search Portal</button>

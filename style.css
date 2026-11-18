@@ -81,12 +81,13 @@ body {
     width: 280px;
     flex-shrink: 0; 
     background-color: var(--sidebar-dark); 
-    padding: 25px 15px;
+    padding: 20px 15px;
     border-right: 3px solid rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     margin-left: -280px; 
+    overflow-y: auto;
     transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -97,10 +98,10 @@ body {
 .sidebar-box {
     background-color: var(--box-dark); 
     color: #FFFFFF; 
-    padding: 20px 15px;
+    padding: 16px 15px;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     border: 2px solid rgba(0,0,0,0.1);
     transition: transform 0.2s ease, filter 0.2s ease, background-color 0.2s ease;
     cursor: pointer; 
@@ -182,7 +183,7 @@ body {
     color: var(--text-black);
 }
 
-.input-group input, .input-group select {
+.input-group input, .input-group select, .input-group textarea {
     width: 100%;
     padding: 12px;
     border: 2px solid rgba(0,0,0,0.3);
@@ -191,9 +192,10 @@ body {
     background-color: #FFF3E0;
     color: var(--text-black);
     font-weight: 500;
+    resize: vertical;
 }
 
-.input-group input:focus, .input-group select:focus {
+.input-group input:focus, .input-group select:focus, .input-group textarea:focus {
     border-color: var(--box-red);
     outline: none;
 }
@@ -236,6 +238,41 @@ body {
     text-align: center;
     background-color: rgba(255,255,255,0.5);
     border: 2px solid var(--text-black);
+}
+
+.feature-feedback {
+    margin-top: 15px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #2c1e16;
+}
+
+/* Mock Interview Q&A Cards */
+.qa-list {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.qa-card {
+    background: rgba(255, 255, 255, 0.55);
+    border-left: 5px solid var(--box-red);
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+
+.qa-question {
+    font-weight: bold;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    color: var(--text-black);
+}
+
+.qa-answer {
+    font-size: 0.95rem;
+    color: #2c1e16;
+    line-height: 1.5;
 }
 
 .hidden { display: none; }
@@ -452,7 +489,7 @@ body {
     line-height: 1.4;
     border-left: 4px solid var(--ai-purple);
     animation: fadeInOutput 0.3s ease;
-    white-space: pre-line; /* Properly renders \n as line breaks */
+    white-space: pre-line;
 }
 
 @keyframes fadeInOutput {
